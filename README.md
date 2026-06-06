@@ -1,199 +1,213 @@
 # BabyBot
 
-**An agentic AI interface for Android. Bring your own LLM — cloud or local — and get a full agent stack out of the box.**
+**An AI agent that lives on your Android phone.**
 
-BabyBot is a mobile-native agentic client. Pick a model (Claude, GPT, Gemini, or any local Ollama model running on your home server), and BabyBot wraps it with a real tool layer: web search and research, on-device computer vision, perceptual + semantic image matching against the open web, a planner/worker execution loop for long tasks, persistent context, and an expressive UI. It runs on your phone. Your photos, your prompts, and (if you want) your model all stay local.
+You speak. BabyBot listens. It sees what's on your screen, drives your apps, reads your documents, remembers the things and people in your life, and brings your choice of LLM — cloud or local — to make the decisions.
 
-It is **not** another chat wrapper.
+> *"Send a WhatsApp to my brother saying I'll be 20 minutes late."*
+>
+> *— Phone wakes. Opens WhatsApp. Finds the contact. Types the message. Sends. Reads back: "Done."*
 
-> **Closed beta is open right now.** Join the testers group below to get the app on your phone.
+That's a real BabyBot session. Voice in, action out. **You don't touch the phone.**
 
-[![Join the closed beta](https://img.shields.io/badge/Closed_Beta-Join_the_testers_group-2ea44f?style=for-the-badge)](https://groups.google.com/g/cutitas85)
+> **Closed beta is open right now.** Hop into the Discord, join the testers group, install from Play Store, talk to your phone.
+
+[![Discord](https://img.shields.io/badge/Discord-Join_the_community-5865F2?style=for-the-badge&logo=discord&logoColor=white)](https://discord.gg/qaSrVm2cAg)
+[![Closed Beta Group](https://img.shields.io/badge/Closed_Beta-Testers_group-2ea44f?style=for-the-badge)](https://groups.google.com/g/cutitas85)
 [![Play Store](https://img.shields.io/badge/Play_Store-Already_a_tester-blue?style=for-the-badge&logo=googleplay)](https://play.google.com/store/apps/details?id=baby.bot.app)
 
 ---
 
-## What makes it different
+## Why this is different
 
-There are a hundred ChatGPT-clone apps on the Play Store. BabyBot isn't one of them.
+There are a lot of AI apps on the Play Store. Most are chat wrappers. BabyBot isn't.
 
-| | Most mobile AI apps | **BabyBot** |
-|---|---|---|
-| **Backend** | Locked to one provider | Claude, OpenAI, Gemini, **and local Ollama** — switch per conversation |
-| **Tools** | Whatever the provider ships | Built-in agent loop with a real tool catalog (search, vision, files, plans, location, more) |
-| **Vision** | Send image to cloud, hope for the best | On-device multi-signal pipeline runs BEFORE the model sees the image — OCR, content labels, object detection, optional ML embedding, EXIF |
-| **Web research** | A toy search wrapper | Multi-stage orchestrator: fan-out queries → fetch → extract → rank → deduplicate, fed to the model as structured context |
-| **Image search** | Doesn't exist, or reverse-image only | Hybrid perceptual hash + semantic embedding matching against any web search result set, with cross-source recognition |
-| **Long tasks** | Time out and start over | Continue button — resume any multi-step task across hours, sessions, app restarts |
-| **Frontier + local together** | Pick one | Planner/worker split: expensive model writes the spec, cheap local model executes against it |
-| **Local-only mode** | Requires desktop | Point at your home Ollama instance and the app works fully offline-from-cloud |
+| Capability | ChatGPT app | Gemini | Claude app | Bixby / Assistant | **BabyBot** |
+|---|:-:|:-:|:-:|:-:|:-:|
+| Cloud LLM chat | ✅ | ✅ | ✅ | ✅ | ✅ |
+| **Run on local LLM (Ollama)** | ❌ | ❌ | ❌ | ❌ | ✅ |
+| **Sees your screen** | ❌ | partial | ❌ | partial | ✅ |
+| **Drives other apps for you** | ❌ | partial | ❌ | partial (Google stack) | ✅ |
+| **Voice-driven hands-free** | partial | ✅ | partial | ✅ | ✅ |
+| **Reads PDF / Word / Excel / PowerPoint** | ❌ | partial | ❌ | ❌ | ✅ |
+| **Persistent visual memory of your world** | ❌ | ❌ | ❌ | ❌ | ✅ |
+| **Hybrid web image identification** | ❌ | ❌ | ❌ | ❌ | ✅ |
+| **No analytics, no ads, no tracking** | ❌ | ❌ | ❌ | ❌ | ✅ |
+
+The combination is the point. Lots of apps do one or two cells. BabyBot does the whole table.
 
 ---
 
-## Core features
+## What it feels like to use
 
-### 🧠 Multi-backend LLM with hot-swap
+A morning with BabyBot, roughly:
 
-Configure multiple backends and switch between them mid-conversation. Each gets its own settings (model, base URL, API key, parameters):
+- *"What's on my calendar today and the weather?"* — answered in one breath
+- *"Let's go home"* — turn-by-turn navigation starts in Google Maps
+- *"Text my wife that I'll be late"* — opens Messages, types, sends
+- *"Send a WhatsApp to my brother saying 'on my way'"* — opens WhatsApp, finds the contact, sends
+- *"What's in this PDF?"* (attached) — summary in plain English, key points pulled out
+- *"What component is this?"* (photo attached) — identifies the part, finds the spec sheet, summarizes
+- *"Is this my dog?"* (photo attached) — checks against your saved photos, knows
+- *"Take a photo and tell me what's in it"* — opens camera, you snap, it tells you
+- *"Set a timer for 25 minutes"* — done, no taps
+- *"Read what's on my screen and email it to me"* — accessibility-driven, opens email, types, sends
+- *"Remember this as my motorbike"* — saved. Next month when you photograph it from a different angle, BabyBot knows it's yours.
 
-- **Anthropic** — Claude Sonnet, Opus, Haiku
-- **OpenAI** — GPT-4 family, GPT-5, the o-series
-- **Google Gemini** — Pro and Flash variants
-- **Ollama** — point at any local server (LAN or DDNS), use any model it serves: Gemma, Llama, Qwen, Mistral, etc.
+No app switching. No copy-paste. No menus. Just talk to BabyBot.
 
-Backends share the same tool layer and the same conversation. Drop a frontier model for a hard reasoning step, switch to a local model for cheap follow-ups, keep the context.
+---
 
-### 🛠️ Agentic tool layer
+## The headline capabilities
 
-Every backend gets the same tools. The model decides when to call them. Tools include:
+### 🤖 Hands on your phone
 
-- **`find_image_match_online`** — search the web for similar images, hybrid match by perceptual hash + (optional) ML embedding, return source pages with content
-- **`browse_web`** / **search orchestrator** — fan-out queries, parallel fetch, content extraction, ranking, dedup
-- **`make_plan`** / **plan state tracker** — multi-step task tracking with status, dependencies, and round-budget awareness
-- **File operations** — read, write, replace within app sandbox
-- **`show_map`** — render a Leaflet map with coordinates or named places
-- **`get_location`** — Nominatim-based reverse geocoding (opt-in)
-- **Shell execution** (Ollama-only, opt-in) — run commands on the device
-- **Custom tools** — extensible via the `ToolRegistry` (Kotlin)
+BabyBot reads what's on screen and takes real actions in any app. Open WhatsApp, type a message, hit send. Compose an email in Gmail. Drive turn-by-turn navigation. Set alarms and timers. Take a photo. Control volume. Make a phone call. Send an SMS. Look up a contact. Copy something to your clipboard. All from voice commands, with the phone in your pocket if you want.
 
-A **Continue** button surfaces when the model wraps up a multi-tool run partway through. One tap resumes from exactly where it stopped, with the full state intact — even after force-closing the app.
+Powered by Android's Accessibility Service, which lets BabyBot interact with apps that don't expose a public API. **This is why BabyBot can send WhatsApp messages with no Meta API access** — it drives the actual WhatsApp UI the way you would.
 
-### 👁️ On-device vision pipeline
+### 👁️ Eyes on your world
 
-When you attach a photo, BabyBot doesn't just ship it to the model and wait. A **multi-signal interrogator** runs on-device first and feeds the model rich pre-extracted context:
+Attach a photo and a five-stage on-device vision pipeline runs **before** the LLM sees the image:
 
-- **EXIF** — date taken, device, GPS (opt-in)
+- **EXIF** — date, location (if you allow), device that took the shot
 - **OCR** — Google ML Kit text recognition, multi-resolution
-- **Content labels** — ML Kit image labeling (subject categories, confidence scores)
-- **Object detection** — ML Kit object localizer
-- **Visual embeddings** — optional MobileNet V3 Large download (~22MB), enables cross-angle / cross-source image matching that perceptual hashing alone misses
-- **EmbeddingMatchSignal / WholeImageMatchSignal / RegionMatchSignal** — extensible signal architecture for adding new vision modalities
+- **Content labels** — ML Kit subject categorization with confidence scores
+- **Object detection** — ML Kit object localizer with bounding boxes
+- **Visual embeddings** — optional MobileNet V3 Large download (~22MB), enables cross-angle / cross-source identification
 
-The model sees the image AND a structured digest. Even small local models (Gemma 4B, Phi 4) make confident identifications they couldn't make from pixels alone.
+Results compose into a structured digest fed to the model. The effect: even small local models (Gemma 4B, Phi 4, Qwen 3B) make confident identifications because they're not working from raw pixels alone.
 
-### 🔍 Web research orchestrator
+For online matching, BabyBot uses a hybrid perceptual hash + embedding pipeline to find products, places, components, and objects in web search results. It then pulls the source page content too — so the answer isn't just "this is X," it's "this is X, sold for Y, with features A, B, C."
 
-A from-scratch multi-stage search pipeline that runs every search through:
+### 🧠 Visual memory of your world
 
-1. **Query planning** — break the user intent into parallel fan-out sub-queries
-2. **Provider dispatch** — DuckDuckGo, Bing, parallel
-3. **Content extraction** — site-aware extractors (Wikipedia, generic, with truncation guards)
-4. **Ranking + dedup** — combined score over host authority, content match, snippet quality
-5. **Digest formatting** — structured markdown the model can actually use
+This one's worth pausing on, because **nobody else ships this.**
 
-It also keeps a **per-conversation search cache** so follow-up questions don't waste fetches re-fetching the same pages.
+Save photos of the things and people that matter to you — your pet, your car, your kids, the components in your workshop, your friends' faces. BabyBot builds a local visual memory unique to you. Show it a new photo later — could be days, months, years — and it knows whether that's your dog Max chilling on the sofa, or just *a* dog. Recognizes subjects across years, angles, lighting changes, growth.
 
-### 🎭 Planner / worker (BabyAssist)
+No training required. No cloud round-trips. No accounts. Add a photo, it's instantly recognizable. Add 20 photos across different angles and lighting, it gets robust.
 
-The "do something hard with cheap tokens" mode. Switch on planner/worker and:
+Cloud assistants forget your pet the moment the conversation ends. BabyBot remembers forever.
 
-- The **planner** (frontier model — Claude, GPT-5, Gemini Pro) reads your goal and produces a concrete spec
-- The **worker** (cheap local model — Gemma, Llama, your choice) executes against the spec one step at a time
-- A state-machine plan tracker keeps the worker honest, gates progress, prevents infinite loops, and routes hard sub-problems back to the planner
+### 📄 Reads what you read
 
-End result: frontier-quality decisions at local-model token cost.
+Attach a PDF, a Word doc, an Excel spreadsheet, a PowerPoint deck, source code in 80+ formats — BabyBot reads it natively. No copy-paste required.
 
-### 💾 Persistent, transparent context
+> *"What does this contract say about termination?"* — reads the PDF
+>
+> *"Find the highest Q3 number in this spreadsheet."* — reads the Excel
+>
+> *"Summarize this slide deck."* — reads the PowerPoint
+>
+> *"What's the main argument in this report?"* — reads the Word doc
+>
+> *"Explain what this code does."* — reads the source
 
-- Conversations save to local SQLite, encrypted at rest
-- A user-facing context builder injects useful metadata into every system prompt: date, locale, location (opt-in), device — so the model never has to ask "what's your timezone" again
-- Image memory: subjects you've identified are remembered across sessions
-- Standing user preferences are stored separately and merged into context
+Plus document **generation** in the other direction: BabyBot can write a PDF from your conversation, save it to your Downloads folder, hand it back as a tappable file chip in chat.
 
-### 🎨 Expressive UI
+### 🔍 Does real work
 
-Yes, the eyes are still there. The eyes are great.
+Beyond chat, BabyBot has a real tool layer that gets used during agentic runs:
 
-- Animated dual-eye widget responds to model output mood tags (`[mood:happy]`, `[mood:thinking]`, `[mood:error]`, etc.)
-- Shape changes by activity state (idle, listening, working, error)
-- Custom typography, dark theme, smooth Compose animations
-- Optional thinking ticker shows what the model is doing during long tool runs
-- Inline image rendering in chat — when the agent finds a relevant image online, it shows up in the bubble, not as a text URL
+- **Multi-stage web research** — query planning, parallel fetching, content extraction, ranking, deduplication. Not a toy search wrapper.
+- **Planner / worker mode** — frontier model writes a spec, cheaper local model executes against it. Frontier-quality decisions at local-token cost.
+- **Continue button** — long agentic tasks resume across sessions, app restarts, even days later
+- **Persistent context** — your conversations save locally, encrypted at rest
+- **Built-in file editor** — view, edit, save files inside BabyBot. IDE-lite on your phone.
+- **Image generation** — synthesize new images when you ask for them
+- **Live map rendering** — any location, inline in chat
 
-The personality layer is a thin shell over a serious agent stack — never the other way around.
+### 🔌 Bring your own LLM
+
+Six backends. Configure them all. Switch between them mid-conversation.
+
+- **Anthropic** — Claude family
+- **OpenAI** — GPT-4 family, GPT-5, o-series
+- **Google Gemini** — Pro and Flash
+- **OpenRouter** — access dozens of models through one API
+- **Ollama** — point at any local server (LAN or DDNS), use any model: Gemma, Llama, Qwen, Mistral, GLM, anything
+- **Custom** — any OpenAI-compatible endpoint
+
+Drop a frontier model for hard reasoning, switch to a local model for cheap follow-ups, keep the same conversation and tools. The agent stack doesn't care which provider answers.
+
+If you only use Ollama with web search disabled, **nothing leaves your network.**
 
 ---
 
-## Architecture (under the hood)
+## Everything here ships, working, polished
 
-For the curious. None of this matters to a user — but if you're considering building something similar, here's the stack:
+BabyBot doesn't roadmap features it hasn't built. Nothing in this README is a placeholder, a stub, or a half-finished experiment. If a capability is listed, it's because it survived the polish cycle before shipping to beta.
 
-- **Language**: Kotlin (100%), targeting Android 7+ (API 24), compileSdk 36
-- **UI**: Jetpack Compose with Material 3
-- **Orchestration**: a `ModelManager` running a tool-call loop, with hidden planner/worker traces, narration buffering, round budgets, per-file re-read brakes, and a deterministic finalization gate
-- **Tool registry**: each tool is a Kotlin object implementing `Tool` with JSON schema metadata, surfaced to whichever backend is active
-- **Vision signals**: each signal (`OcrSignal`, `LabelSignal`, `ObjectDetectionSignal`, `EmbeddingMatchSignal`, etc.) is an independent module that can fail or contribute without blocking the others
-- **Embedder**: MediaPipe Image Embedder wrapper for MobileNet V3 Large, mutex-protected, ~30-80ms inference
-- **Search**: a custom orchestrator with provider abstraction, parallel fetch via OkHttp, site-specific extractors, and persistent cache
-- **Concurrency**: structured coroutines throughout, with a BackgroundWorkService keeping the agent alive across UI lifecycle events
-- **No analytics, no tracking, no ads**
+In a Play Store full of vibe-coded weekend AI apps where half the buttons don't work, that matters.
+
+---
+
+## 🥚 Easter eggs
+
+This README covers the headline capabilities. **There's more.** A lot more. Some tools and behaviours are intentionally undocumented because finding them is part of the fun.
+
+Just ask BabyBot for things. If a capability is there, it'll use it. If it isn't, BabyBot will tell you honestly. The full surface area is bigger than this page — discover the rest by talking to your phone.
 
 ---
 
 ## Privacy
 
-- **No telemetry from BabyBot itself.** No analytics SDK, no crash reporter that calls home, no third-party ads.
-- **Google ML Kit telemetry** is present because it ships with ML Kit's bundled libraries (anonymous SDK metrics, not your data). Same as every other Android app that uses ML Kit. Will be replaced by raw TFLite in a future version.
-- **Cloud LLM calls** go directly to the provider you configured (Anthropic, OpenAI, Google) — no proxy through any BabyBot server.
-- **Local mode** sends nothing outside your LAN if you only use Ollama and disable web search.
-- **GPS, photo location** are opt-in. Default OFF.
-- API keys are stored encrypted on-device.
+- **No analytics from BabyBot itself.** No third-party SDK, no crash reporter that phones home, no advertising IDs.
+- **No ads.** Not now, not planned, not ever.
+- **Cloud LLM calls** go directly to whichever provider you configured. There is no BabyBot server in the middle.
+- **Local mode** with Ollama + web search off = nothing leaves your network.
+- **Location, contacts, photos** are opt-in per-feature. Default off.
+- **API keys** are stored encrypted on-device.
+- **Google ML Kit anonymous SDK telemetry** is present because it ships with ML Kit's bundled libraries — same as every other Android app that uses Google's on-device ML stack. Not user data, just SDK metrics. Planned to be replaced with raw TFLite in a future version to eliminate this.
 
 ---
 
-## Status & Roadmap
-
-BabyBot is in **active development** and currently in **closed beta** on the Play Store. Things ship weekly, sometimes daily.
-
-**Live and stable:**
-- Multi-backend LLM with hot-swap
-- Full agent tool loop with Continue button
-- Multi-signal vision pipeline
-- Web research orchestrator
-- Planner/worker mode
-- Optional ML embedding tier
-- Hybrid image matching against web search
+## Roadmap
 
 **Coming next:**
+- Faster screen reading (the main UX bottleneck right now — multi-step automation can take 40-60s, target is under 15s)
 - WorkManager-backed background ML downloads
-- MobileCLIP integration for substantially better semantic image matching
-- Per-component sub-image matching via Object Detection
-- Improved local-model tool-call reliability
-- Multi-resolution OCR pass merging
-- More custom site extractors
+- Per-component sub-image matching via on-device object detection
 
-**On the long-term wishlist:**
+**On the horizon:**
+- **Android Auto support** — voice-driven AI agent in your car. BYO LLM. Privacy-first alternative to Google Assistant in the dashboard.
+- MobileCLIP integration for substantially better semantic image matching
+- Improved local-model tool-call reliability across the Ollama model zoo
+
+**Long-term:**
 - iOS port (no committed timeline)
-- Skill / tool marketplace
-- Voice mode
+- Multi-modal voice (speak with feeling, not just transcribe)
 
 ---
 
 ## Join the closed beta
 
-The fastest way to get the app on your phone:
+Fastest way to get BabyBot on your phone:
 
-1. **Join the testers group** → [groups.google.com/g/cutitas85](https://groups.google.com/g/cutitas85)
-2. Wait ~5 minutes for the group access to propagate
-3. **Open the Play Store link** → [play.google.com/store/apps/details?id=baby.bot.app](https://play.google.com/store/apps/details?id=baby.bot.app)
-4. Install, configure a backend (point at Ollama or paste a Claude/OpenAI/Gemini API key), say hi
+1. **Hop into the Discord** for chat, support, demos, and direct feedback → [discord.gg/qaSrVm2cAg](https://discord.gg/qaSrVm2cAg)
+2. **Join the testers group** (required for Play Store closed-test access) → [groups.google.com/g/cutitas85](https://groups.google.com/g/cutitas85)
+3. Wait ~5 minutes for the group access to propagate
+4. **Open the Play Store link** → [play.google.com/store/apps/details?id=baby.bot.app](https://play.google.com/store/apps/details?id=baby.bot.app)
+5. Install, configure a backend (point at your Ollama or paste an API key), say hi in Discord
 
 **Looking for feedback specifically on:**
-- Real-world image identification (products, places, plants, components, anything)
+- Real-world image identification — products, places, plants, components, anything
+- Voice-driven multi-app automation — WhatsApp, Gmail, Maps, alarms, contacts
 - Local Ollama setup pain points
 - Battery / performance with the embedding tier active
-- Tool-call reliability with different models
-- Any weird UI states or crashes
+- Any tool-call weirdness across different local models
+- Any document-reading edge cases (heavily-formatted PDFs, multi-sheet Excels)
 
-Feedback channels are the Google Group, the Play Store internal feedback, or open an issue here on GitHub.
+Feedback channels: the **Discord** (fastest, best for back-and-forth), Play Store internal-testing feedback, or open an issue on this repo.
 
 ---
 
 ## About
 
-BabyBot is built by [Robert Nilges / PixCats](https://github.com/PixCats) 
+BabyBot is built by [Robert Nilges / PixCats](https://github.com/PixCats)
 
-Other projects worth a look:
+Other projects:
 - **[SteamWidget](https://github.com/PixCats/SteamWidget)** — Steam stats widget for Windows
 - **MyLuck** — also on the Play Store
 
@@ -201,9 +215,9 @@ Other projects worth a look:
 
 ## License
 
-**BabyBot is closed-source software.** This repository exists as a public face for the project — documentation, issue tracking, release notes, and beta coordination. The application source code is not published.
+**BabyBot is closed-source software.** This repository exists as a public face for the project — documentation, issue tracking, release notes, beta coordination. The application source code is not published.
 
-Compiled APKs are distributed exclusively through the Google Play Store (currently in closed testing). Sideloaded redistribution of the APK is not authorized. Reverse engineering, decompilation, and disassembly are prohibited except where expressly permitted by applicable law.
+Compiled APKs are distributed exclusively through Google Play (currently in closed testing). Sideloaded redistribution of the APK is not authorized. Reverse engineering, decompilation, and disassembly are prohibited except where expressly permitted by applicable law.
 
 Copyright © 2025–2026 Robert Nilges / PixCats. All rights reserved.
 
@@ -211,6 +225,6 @@ Copyright © 2025–2026 Robert Nilges / PixCats. All rights reserved.
 
 <div align="center">
 
-**Built in Android Studio, with too much coffee, in the UK.** ☕
+**Built in Android Studio, with too much coffee** ☕
 
 </div>
