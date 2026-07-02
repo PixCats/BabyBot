@@ -13,7 +13,7 @@ That's a real BabyBot session. Voice in, action out. **You don't touch the phone
 > **Closed beta is open right now.** Hop into the Discord, join the testers group, install from Play Store, talk to your phone.
 
 [![Discord](https://img.shields.io/badge/Discord-Join_the_community-5865F2?style=for-the-badge&logo=discord&logoColor=white)](https://discord.gg/qaSrVm2cAg)
-[![Play Store](https://img.shields.io/badge/Play_Store-Already_a_tester-blue?style=for-the-badge&logo=googleplay)](https://play.google.com/store/apps/details?id=baby.bot.app)
+[![Play Store](https://img.shields.io/badge/Play_Store-blue?style=for-the-badge&logo=googleplay)](https://play.google.com/store/apps/details?id=baby.bot.app)
 
 ---
 
