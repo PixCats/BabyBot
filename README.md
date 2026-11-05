@@ -1,19 +1,19 @@
 # BabyBot
 
-**An AI agent that lives on your Android phone.**
+**A fully agentic AI that lives on your Android phone.**
 
-You speak. BabyBot listens. It sees what's on your screen, drives your apps, reads your documents, remembers the things and people in your life, and brings your choice of LLM — cloud or local — to make the decisions.
+You speak. BabyBot listens. It plans multi-step tasks and carries them out — reading and writing documents, identifying what's in your photos, handling your email, researching the web, and remembering the things and people in your life — with your choice of LLM, cloud or local, making the decisions.
 
-> *"Send a WhatsApp to my brother saying I'll be 20 minutes late."*
+> *"Call my brother."*
 >
-> *— Phone wakes. Opens WhatsApp. Finds the contact. Types the message. Sends. Reads back: "Done."*
+> *— Finds the contact, spots that two saved numbers are the same, opens the dialer ready to go. You tap call.*
 
-That's a real BabyBot session. Voice in, action out. **You don't touch the phone.**
-
-> **Closed beta is open right now.** Hop into the Discord, join the testers group, install from Play Store, talk to your phone.
+BabyBot does the legwork. **You stay in control of anything that leaves your phone.**
 
 [![Discord](https://img.shields.io/badge/Discord-Join_the_community-5865F2?style=for-the-badge&logo=discord&logoColor=white)](https://discord.gg/qaSrVm2cAg)
-[![Play Store](https://img.shields.io/badge/Play_Store-blue?style=for-the-badge&logo=googleplay)](https://play.google.com/store/apps/details?id=baby.bot.app)
+[![Play Store](https://img.shields.io/badge/Get_it_on-Play_Store-blue?style=for-the-badge&logo=googleplay)](https://play.google.com/store/apps/details?id=baby.bot.app)
+
+**Available now on Google Play for everyone.**
 
 ---
 
@@ -25,13 +25,10 @@ There are a lot of AI apps on the Play Store. Most are chat wrappers. BabyBot is
 |---|:-:|:-:|:-:|:-:|:-:|
 | Cloud LLM chat | ✅ | ✅ | ✅ | ✅ | ✅ |
 | **Run on local LLM (Ollama)** | ❌ | ❌ | ❌ | ❌ | ✅ |
-| **Sees your screen** | ❌ | partial | ❌ | partial | ✅ |
-| **Drives other apps for you** | ❌ | partial | ❌ | partial (Google stack) | ✅ |
 | **Voice-driven hands-free** | partial | ✅ | partial | ✅ | ✅ |
 | **Reads PDF / Word / Excel / PowerPoint** | ❌ | partial | ❌ | ❌ | ✅ |
 | **Persistent visual memory of your world** | ❌ | ❌ | ❌ | ❌ | ✅ |
 | **Hybrid web image identification** | ❌ | ❌ | ❌ | ❌ | ✅ |
-| **No analytics, no ads, no tracking** | ❌ | ❌ | ❌ | ❌ | ✅ |
 
 The combination is the point. Lots of apps do one or two cells. BabyBot does the whole table.
 
@@ -43,27 +40,46 @@ A morning with BabyBot, roughly:
 
 - *"What's on my calendar today and the weather?"* — answered in one breath
 - *"Let's go home"* — turn-by-turn navigation starts in Google Maps
-- *"Text my wife that I'll be late"* — opens Messages, types, sends
-- *"Send a WhatsApp to my brother saying 'on my way'"* — opens WhatsApp, finds the contact, sends
+- *"Text my wife that I'll be late"* — Messages opens with the contact and text ready, you tap send
+- *"Call my brother"* — dialer opens with the right number, you tap call
+- *"Email this summary to my work address"* — sent from your own email account, no app switching
 - *"What's in this PDF?"* (attached) — summary in plain English, key points pulled out
 - *"What component is this?"* (photo attached) — identifies the part, finds the spec sheet, summarizes
 - *"Is this my dog?"* (photo attached) — checks against your saved photos, knows
-- *"Take a photo and tell me what's in it"* — opens camera, you snap, it tells you
-- *"Set a timer for 25 minutes"* — done, no taps
-- *"Read what's on my screen and email it to me"* — accessibility-driven, opens email, types, sends
+- *"Set a timer for 25 minutes"* — done
 - *"Remember this as my motorbike"* — saved. Next month when you photograph it from a different angle, BabyBot knows it's yours.
-
-No app switching. No copy-paste. No menus. Just talk to BabyBot.
 
 ---
 
 ## The headline capabilities
 
-### 🤖 Hands on your phone
+### 📱 Gets things done on your phone
 
-BabyBot reads what's on screen and takes real actions in any app. Open WhatsApp, type a message, hit send. Compose an email in Gmail. Drive turn-by-turn navigation. Set alarms and timers. Take a photo. Control volume. Make a phone call. Send an SMS. Look up a contact. Copy something to your clipboard. All from voice commands, with the phone in your pocket if you want.
+BabyBot prepares real actions and leaves the final tap to you:
 
-Powered by Android's Accessibility Service, which lets BabyBot interact with apps that don't expose a public API. **This is why BabyBot can send WhatsApp messages with no Meta API access** — it drives the actual WhatsApp UI the way you would.
+- **Calls** — finds the contact (and sorts out duplicate numbers), opens the dialer ready to call
+- **SMS** — opens Messages with the recipient and your text already written
+- **Navigation** — starts turn-by-turn Google Maps navigation to wherever you ask
+- **Location & weather** — where you are, current conditions and forecast anywhere, maps rendered inline (photos with GPS get a map too)
+- **Alarms, timers, volume, battery, camera, contacts, opening any app** — from a voice command
+
+Nothing gets sent or dialled behind your back. BabyBot does the work, and you confirm.
+
+### ✉️ Your email, handled
+
+Connect your own email accounts and BabyBot can send, read and answer mail for you.
+
+- **Multiple accounts** — e.g. work and personal, each switched on or off on its own. Run both, or either.
+- **Sending over SMTP** — quick setup or manual (STARTTLS / SSL/TLS), straight from your own account. Plain text or rich HTML, with attachments. No BabyBot server in between.
+- **Reading over IMAP (optional)** — BabyBot can read and reply to incoming mail, using the same login.
+- **Auto-reply — off by default.** Set it per account:
+  - *Off* — manual only
+  - *Allowlist only* — replies only to senders you've approved
+  - *Anyone (business mode)* — answers incoming mail for you, e.g. a workshop inbox
+- **Every new sender needs your one-tap approval first.**
+- **Your rules** — give it instructions (*"Open Mon–Sat 9–18. Never quote prices. Sign as Robert."*) and optional branded HTML templates where the AI only fills in the variables.
+
+Email is fully optional and can be turned off in Settings.
 
 ### 👁️ Eyes on your world
 
@@ -81,97 +97,113 @@ For online matching, BabyBot uses a hybrid perceptual hash + embedding pipeline 
 
 ### 🧠 Visual memory of your world
 
-This one's worth pausing on, because **nobody else ships this.**
-
-Save photos of the things and people that matter to you — your pet, your car, your kids, the components in your workshop, your friends' faces. BabyBot builds a local visual memory unique to you. Show it a new photo later — could be days, months, years — and it knows whether that's your dog Max chilling on the sofa, or just *a* dog. Recognizes subjects across years, angles, lighting changes, growth.
+Save photos of the things and people that matter to you — your pet, your car, your kids, the components in your workshop, your friends' faces. BabyBot builds a local visual memory unique to you. Show it a new photo later — days, months, years — and it knows whether that's your dog Max on the sofa, or just *a* dog.
 
 No training required. No cloud round-trips. No accounts. Add a photo, it's instantly recognizable. Add 20 photos across different angles and lighting, it gets robust.
 
-Cloud assistants forget your pet the moment the conversation ends. BabyBot remembers forever.
+### 📄 Documents and files — made on your phone
 
-### 📄 Reads what you read
-
-Attach a PDF, a Word doc, an Excel spreadsheet, a PowerPoint deck, source code in 80+ formats — BabyBot reads it natively. No copy-paste required.
+Attach a PDF, a Word doc, an Excel spreadsheet, a PowerPoint deck, or source code in 80+ formats — BabyBot reads it natively.
 
 > *"What does this contract say about termination?"* — reads the PDF
 >
 > *"Find the highest Q3 number in this spreadsheet."* — reads the Excel
 >
 > *"Summarize this slide deck."* — reads the PowerPoint
+
+And it works in the other direction too. **Files are created directly on your device** — not in anyone's cloud:
+
+- **Create** `.txt .md .py .html .json .csv .pdf .docx .xlsx` and more
+- **Edit** — surgical text replacements or full rewrites; DOCX/XLSX edits keep the original formatting
+- **Convert** between PDF, DOCX, XLSX, PPTX and text
+- **PDF tools** — extract, delete, rotate or render pages; pull embedded images out as PNGs
+- Everything lands in **`Downloads/BabyBot/`** and comes back as a tappable file chip in chat
+
+**BabyBot Editor** — a built-in editor with syntax highlighting and line numbers. It registers with Android's *Open with* menu, so you can open, edit and save files with BabyBot from anywhere on your phone.
+
+**Select → Ask BabyBot** — highlight any part of a file in the editor — a few lines of code, a paragraph of a document, a clause in a contract — and tap *Ask BabyBot*. The selection drops into chat as a reference chip (e.g. `meow.py:11-13`), and you can ask BabyBot to explain it, summarise it, fix it or rewrite it.
+
+### 🎨 Images and video
+
+- **Image generation** — square, wide or portrait, through Gemini, OpenAI or OpenRouter in the cloud, or your own rig (ComfyUI, Stable Diffusion WebUI, NVIDIA NIM)
+- **Video generation** — 4–12 second AI clips via Veo (Gemini), Sora (OpenAI-compatible) or ComfyUI, with in-app playback and thumbnail cards. Takes 1–3 minutes.
+- Any chat model can trigger image or video generation — the media engine handles the rest
+
+> ✅ **Cloud generation through OpenAI and Gemini is tested and works very well** — the recommended route.
 >
-> *"What's the main argument in this report?"* — reads the Word doc
->
-> *"Explain what this code does."* — reads the source
+> ⚠️ **Beta:** image and video generation on **local** backends (ComfyUI, Stable Diffusion WebUI) hasn't been fully tested yet. Expect rough edges — and please report what you find in the Discord.
 
-Plus document **generation** in the other direction: BabyBot can write a PDF from your conversation, save it to your Downloads folder, hand it back as a tappable file chip in chat.
+### 🔍 Fully agentic — does real work
 
-### 🔍 Does real work
-
-Beyond chat, BabyBot has a real tool layer that gets used during agentic runs:
-
-- **Multi-stage web research** — query planning, parallel fetching, content extraction, ranking, deduplication. Not a toy search wrapper.
-- **Planner / worker mode** — frontier model writes a spec, cheaper local model executes against it. Frontier-quality decisions at local-token cost.
+- **Plans and executes** — multi-step tasks get broken into ordered steps, each tracked as it runs, so long jobs don't fall apart halfway
+- **Multi-stage web research** — query planning, parallel sub-questions, content extraction, host-reputation scoring, ranking, deduplication. Quick (3 sources), normal (6) or deep (12), with specialised modes for code, docs, GitHub and Stack Overflow
+- **Real photos, not AI drawings** — "show me X" returns actual web images alongside the answer
+- **Recall** — re-read an earlier search without re-running it, even after a restart
+- **Baby Assist (planner / worker mode)** — a frontier model writes the plan, a cheaper or local model carries it out. Frontier-quality decisions at local-token cost.
 - **Continue button** — long agentic tasks resume across sessions, app restarts, even days later
 - **Persistent context** — your conversations save locally, encrypted at rest
-- **Built-in file editor** — view, edit, save files inside BabyBot. IDE-lite on your phone.
-- **Image generation** — synthesize new images when you ask for them
-- **Live map rendering** — any location, inline in chat
 
 ### 🔌 Bring your own LLM
 
 Six backends. Configure them all. Switch between them mid-conversation.
 
 - **Anthropic** — Claude family
-- **OpenAI** — GPT-4 family, GPT-5, o-series
+- **OpenAI** — GPT family and o-series
 - **Google Gemini** — Pro and Flash
-- **OpenRouter** — access dozens of models through one API
-- **Ollama** — point at any local server (LAN or DDNS), use any model: Gemma, Llama, Qwen, Mistral, GLM, anything
+- **OpenRouter** — dozens of models through one API
+- **Ollama** — point at any local server (LAN or DDNS), use any model
 - **Custom** — any OpenAI-compatible endpoint
 
-Drop a frontier model for hard reasoning, switch to a local model for cheap follow-ups, keep the same conversation and tools. The agent stack doesn't care which provider answers.
-
-If you only use Ollama with web search disabled, **nothing leaves your network.**
+First launch walks you through **setting up a model**, so you're chatting within a minute.
 
 ---
 
-## Everything here ships, working, polished
+## ⚠️ Honest limits
 
-BabyBot doesn't roadmap features it hasn't built. Nothing in this README is a placeholder, a stub, or a half-finished experiment. If a capability is listed, it's because it survived the polish cycle before shipping to beta.
+Things people assume BabyBot can do, but it can't:
 
-In a Play Store full of vibe-coded weekend AI apps where half the buttons don't work, that matters.
+- ❌ **Type into WhatsApp, Instagram, Telegram, etc.** — it can open the app, but not type into it
+- ❌ **Auto-send calls or SMS** — it pre-fills, you tap send
+- ❌ **See your screen** — it only sees images you attach
+- ❌ **Read your gallery or files outside `Downloads/BabyBot/`** — except attachments you send it
+- ❌ **Run terminal commands** — no shell on Android
+- ❌ **Pay for things or take banking actions**
 
 ---
 
 ## 🥚 Easter eggs
 
-This README covers the headline capabilities. **There's more.** A lot more. Some tools and behaviours are intentionally undocumented because finding them is part of the fun.
+This README covers the headline capabilities. **There's more.** Some tools and behaviours are intentionally undocumented because finding them is part of the fun.
 
-Just ask BabyBot for things. If a capability is there, it'll use it. If it isn't, BabyBot will tell you honestly. The full surface area is bigger than this page — discover the rest by talking to your phone.
+Just ask BabyBot for things. If a capability is there, it'll use it. If it isn't, BabyBot will tell you honestly.
 
 ---
 
 ## Privacy
 
-- **No analytics from BabyBot itself.** No third-party SDK, no crash reporter that phones home, no advertising IDs.
-- **No ads.** Not now, not planned, not ever.
-- **Cloud LLM calls** go directly to whichever provider you configured. There is no BabyBot server in the middle.
-- **Local mode** with Ollama + web search off = nothing leaves your network.
-- **Location, contacts, photos** are opt-in per-feature. Default off.
-- **API keys** are stored encrypted on-device.
-- **Google ML Kit anonymous SDK telemetry** is present because it ships with ML Kit's bundled libraries — same as every other Android app that uses Google's on-device ML stack. Not user data, just SDK metrics. Planned to be replaced with raw TFLite in a future version to eliminate this.
+- **BabyBot is free and supported by ads** (Google AdMob). Ads are served by Google, which may use your device's advertising ID — see Google's privacy policy for details.
+- **No analytics from BabyBot itself.** No BabyBot server, no crash reporter of our own.
+- **Your files stay on your device.** Everything BabyBot creates is saved to `Downloads/BabyBot/` on your phone — never uploaded to a BabyBot cloud.
+- **Cloud LLM calls** go directly to whichever provider you configured. There is no BabyBot server in the middle. What you send to a cloud provider (OpenAI, Google, Anthropic, OpenRouter…) is handled under *their* privacy policy and is outside BabyBot's control — use Ollama if you want to keep it local.
+- **Local mode** with Ollama + web search off keeps your conversations on your own network (ad requests still go to Google).
+- **Email** goes directly between your phone and your own mail server. Off unless you add an account.
+- **Location, contacts, photos** are opt-in per feature. Default off.
+- **API keys and email passwords** are stored encrypted on-device.
+- **Google ML Kit** includes anonymous SDK telemetry as part of Google's bundled libraries. Planned to be replaced with raw TFLite in a future version.
+
+<!-- Add links here once hosted: Privacy policy · Terms of Service -->
 
 ---
 
 ## Roadmap
 
 **Coming next:**
-- Faster screen reading (the main UX bottleneck right now — multi-step automation can take 40-60s, target is under 15s)
 - WorkManager-backed background ML downloads
 - Per-component sub-image matching via on-device object detection
 
 **On the horizon:**
 - **Android Auto support** — voice-driven AI agent in your car. BYO LLM. Privacy-first alternative to Google Assistant in the dashboard.
-- MobileCLIP integration for substantially better semantic image matching
+- MobileCLIP integration for better semantic image matching
 - Improved local-model tool-call reliability across the Ollama model zoo
 
 **Long-term:**
@@ -180,25 +212,21 @@ Just ask BabyBot for things. If a capability is there, it'll use it. If it isn't
 
 ---
 
-## Join the closed beta
+## Get BabyBot
 
-Fastest way to get BabyBot on your phone:
+1. **Install from Google Play** → [play.google.com/store/apps/details?id=baby.bot.app](https://play.google.com/store/apps/details?id=baby.bot.app)
+2. **Set up a model** — point at your Ollama server or paste an API key
+3. **Say hi in the Discord** → [discord.gg/qaSrVm2cAg](https://discord.gg/qaSrVm2cAg)
 
-1. **Hop into the Discord** for chat, support, demos, and direct feedback → [discord.gg/qaSrVm2cAg](https://discord.gg/qaSrVm2cAg)
-2. **Join the testers group** (required for Play Store closed-test access) → [groups.google.com/g/cutitas85](https://groups.google.com/g/cutitas85)
-3. Wait ~5 minutes for the group access to propagate
-4. **Open the Play Store link** → [play.google.com/store/apps/details?id=baby.bot.app](https://play.google.com/store/apps/details?id=baby.bot.app)
-5. Install, configure a backend (point at your Ollama or paste an API key), say hi in Discord
-
-**Looking for feedback specifically on:**
-- Real-world image identification — products, places, plants, components, anything
-- Voice-driven multi-app automation — WhatsApp, Gmail, Maps, alarms, contacts
+**Feedback especially welcome on:**
+- Real-world image identification — products, places, plants, components
+- Email auto-reply in real inboxes
 - Local Ollama setup pain points
 - Battery / performance with the embedding tier active
-- Any tool-call weirdness across different local models
-- Any document-reading edge cases (heavily-formatted PDFs, multi-sheet Excels)
+- Tool-call weirdness across different local models
+- Document-reading edge cases (heavily formatted PDFs, multi-sheet Excels)
 
-Feedback channels: the **Discord** (fastest, best for back-and-forth), Play Store internal-testing feedback, or open an issue on this repo.
+Feedback channels: the **Discord** (fastest), a Play Store review, or open an issue on this repo.
 
 ---
 
@@ -214,9 +242,9 @@ Other projects:
 
 ## License
 
-**BabyBot is closed-source software.** This repository exists as a public face for the project — documentation, issue tracking, release notes, beta coordination. The application source code is not published.
+**BabyBot is closed-source software.** This repository is the public face of the project — documentation, issue tracking, release notes. The application source code is not published.
 
-Compiled APKs are distributed exclusively through Google Play (currently in closed testing). Sideloaded redistribution of the APK is not authorized. Reverse engineering, decompilation, and disassembly are prohibited except where expressly permitted by applicable law.
+Compiled APKs are distributed exclusively through Google Play. Sideloaded redistribution of the APK is not authorized. Reverse engineering, decompilation, and disassembly are prohibited except where expressly permitted by applicable law.
 
 Copyright © 2025–2026 Robert Nilges / PixCats. All rights reserved.
 
