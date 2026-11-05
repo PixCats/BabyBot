@@ -12,8 +12,13 @@ BabyBot does the legwork. **You stay in control of anything that leaves your pho
 
 [![Discord](https://img.shields.io/badge/Discord-Join_the_community-5865F2?style=for-the-badge&logo=discord&logoColor=white)](https://discord.gg/qaSrVm2cAg)
 [![Play Store](https://img.shields.io/badge/Get_it_on-Play_Store-blue?style=for-the-badge&logo=googleplay)](https://play.google.com/store/apps/details?id=baby.bot.app)
+[![TikTok](https://img.shields.io/badge/TikTok-@no0blvl99-000000?style=for-the-badge&logo=tiktok&logoColor=white)](https://www.tiktok.com/@no0blvl99)
 
 **Available now on Google Play for everyone.**
+
+🎥 **See BabyBot in action** → [tiktok.com/@no0blvl99](https://www.tiktok.com/@no0blvl99)
+
+*BabyBot evolves fast. Some older videos show features that have since changed or been removed, mostly to comply with Google Play policy. This README is always the up-to-date reference.*
 
 ---
 
